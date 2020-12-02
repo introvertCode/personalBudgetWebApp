@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang= "pl">
+
+<head>
+	<meta charset ="utf-8">
+	<title>Budżet osobisty</title>
+	
+    <meta name="description" content="budżet domowy">
+    <meta name="keywords" content="budżet domowy, budget, budżet, pieniądze, planowanie wydatków">
+    <meta name="author" content="Stanisław Bielski">
+    <meta http-equiv="X-Ua-Compatible" content="IE=edge,chrome=1">
+    
+    <link rel="stylesheet" href="style.css">
+	
+
+</head>
+
+<body>
+	<div class="head"><a href="menu.html" class="menu-link">Budżet osobisty</a></div>
+	<div id="container">
+		<div id="menu-left">
+		<header>Dodaj przychód</header>
+			<form action="" method="post" id = "addIncomeForm">
+					<div><input class="addIncomeFormInput" id="amount" type="number" placeholder="kwota" step="0.01" required></div>
+					<div><input class="addIncomeFormInput" id="datePicker" type="date" /></div>
+					
+					<script type="text/javascript">
+						document.getElementById('datePicker').valueAsDate = new Date();
+					</script>
+					
+					<div id="fieldset"><fieldset id="frame">
+					<legend> Rodzaj przychodu:</legend>
+					 <div><label ><input class="radioInput" type="radio" value"1" name="category" checked="checked"><span class="radio-span">Wynagrodzenie</span></label></div>
+					 <div><label ><input class="radioInput" type="radio"  value"2" name="category"><span class="radio-span">Odsetki bankowe</span></label></div>
+					 <div><label ><input class="radioInput" type="radio" value"3" name="category"><span class="radio-span">Sprzedaż na allegro</span></label></div>
+					 <div><label ><input class="radioInput" type="radio" value"4" name="category"><span class="radio-span">Inne</span></label></div>
+					</fieldset></div>
+					<div>
+					<div id="comment_label"><label for="comment" >Uwagi</label></div>
+					<div><textarea name="moreInfo" id="comment" rows="4"></textarea></div>
+					</div>
+					 
+					<div><input class="submit_button" id="addIncome" type="submit" value="Dodaj"></div>
+					<a href="menu.html" class="exit-link"><div class="cancel_button" id="cancel" type="cancel" value="Anuluj">Anuluj</div></a>
+	
+			</form>
+		</div>
+	</div>
+</body>
+</html>
+	
+	

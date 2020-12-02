@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang= "pl">
+
+<head>
+	<meta charset ="utf-8">
+	<title>Budżet osobisty</title>
+	
+	<meta name="description" content="budżet domowy">
+	<meta name="keywords" content="budżet domowy, budget, budżet, pieniądze, planowanie wydatków">
+	<meta name="author" content="Stanisław Bielski">
+	<meta http-equiv="X-Ua-Compatible" content="IE=edge,chrome=1">
+	
+	<link rel="stylesheet" href="style.css">
+	<script src="jquery-3.5.1.min.js"></script>
+	
+	
+
+</head>
+
+<body>
+<div class="head"><a href="menu.html" class="menu-link">Budżet osobisty</a></div>
+	<div id="balance_container">
+		<div id="form_container">
+		
+			<form action="" method="post" id = "show_balance_form">
+				<div id="header_div"><header id="balance_header">Przeglądaj bilans</header></div>
+				<div id="list_select">
+					<label for ="period"> Wybierz okres: </label>
+					<select id="period" name="period">
+						<option  selected value=1 class="standard">Bieżący miesiąc</option>
+						<option  value=2 class="standard">Poprzedni miesiąc</option>
+						<option  value=3 class="standard">Bieżący rok</option>
+						<option value=4 id="not-standard">niestandardowy</option>
+					</select>
+				</div>
+				
+				<div id="select_date">
+					<div><span class="bal-pick-date">Wybierz początkową datę</span></div>
+					<div><input id="start-date" class="showBalance" type="date" /></div>
+					<div><span class="bal-pick-date">Wybierz końcową datę</span></div>
+					<script type="text/javascript">
+						document.getElementById('start-date').valueAsDate = new Date();
+					</script>
+					<div><input id="end-date" class="showBalance" type="date" /></div>
+					<script type="text/javascript">
+						document.getElementById('end-date').valueAsDate = new Date();
+					</script>
+				</div>
+					<div><input class="submit_button" id="show-bal" type="submit" value="Pokaż"></div>
+			</form>
+			
+		</div>
+	</div>
+	<script src="animation.js"></script>
+
+</body>
+</html>
+	
+	

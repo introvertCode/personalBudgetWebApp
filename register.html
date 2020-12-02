@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang= "pl">
+
+<head>
+	<meta charset ="utf-8">
+	<title>Budżet osobisty</title>
+	
+	<meta name="description" content="budżet domowy">
+	<meta name="keywords" content="budżet domowy, budget, budżet, pieniądze, planowanie wydatków">
+	<meta name="author" content="Stanisław Bielski">
+	<meta http-equiv="X-Ua-Compatible" content="IE=edge,chrome=1">
+	
+	<link rel="stylesheet" href="style.css">
+	<script src="jquery-3.5.1.min.js"></script>
+	
+
+</head>
+
+<body>
+	<div id="reg-container">
+		<form>
+				<label for="email">Login</label></br>
+				<input class="reg" type="email" placeholder="Wpisz poprawny adres e-mail" name="email" required></br>
+				<label>Hasło</label></br>
+				<input id="pass" class="reg" type="password" placeholder="hasło" minlength ="5"  required></br>
+				<label>Powtórz hasło</label></br>
+				<input  id="rep-pass"class="reg" type="password" placeholder="powtórz hasło" >
+				<input id="reg-but" class="submit_button" type="submit" value="Zarejestruj">
+				<a href="index.html" class="exit-link"><div class="cancel_button" id="reg-exit" type="cancel" value="Anuluj">Wyjdź</div></a>
+		</form>
+		
+	</div>
+	<script src="passwordValidation.js"></script>
+</body>
+</html>
+	
+	
