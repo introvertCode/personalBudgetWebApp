@@ -12,6 +12,7 @@
 .title{
 	font-size: 5rem;
 	color: rgba(24, 48, 104, 0.925);
+	
 }
 
 #name-link{
@@ -179,7 +180,7 @@
 
 #login-img{
 	max-width: 100%;
-	max-height: 10;
+	height: auto;
 }
 
 /* MENU */
@@ -284,9 +285,13 @@ font-size: 1rem;
 #comment
 {
 	width: 50%;
-	 resize: none;
-	 border-radius: 10px;
+	resize: none;
+	border-radius: 10px;
+	padding:10px;
+	outline: none;
+	border: none;
 }
+
 
 #menu-left{
 	background: rgba(255, 255, 255, 0.363);
