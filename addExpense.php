@@ -1,3 +1,12 @@
+<?php
+	session_start();
+	if (!isset($_SESSION['loggedIn']))
+    {
+        header('Location: index.html');
+        exit();
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="pl">
 
@@ -25,29 +34,28 @@
 
     <header class="bg-light d-flex justify-content-center ">
 
-        <div class="container d-flex flex-row justify-content-center text-center py-2 mx-3 ">
+    <div class="container d-flex flex-row justify-content-center text-center py-2 mx-3 ">
+           
+           <div class="col-2">
+               <a href="menu.php"><i class="shortcut icon-home"></i></a>
+           </div>
 
-            <div class="col-2">
-                <a href="menu.html"><i class="shortcut icon-home"></i></a>
-            </div>
+           <div class=" col-2">
+               <a href="showBalance.php"><i class="shortcut icon-chart-area"></i></a>
+           </div>
 
-            <div class=" col-2">
-                <a href="showBalance.html"><i class="shortcut icon-chart-area"></i></a>
-            </div>
+           <div class=" col-2">
+               <a href="addIncome.php"><i class="shortcut icon-plus"></i></a>
+           </div>
 
-            <div class=" col-2">
-                <a href="addIncome.html"><i class="shortcut icon-plus"></i></a>
-            </div>
+           <div class=" col-2">
+               <a class="active-shortcut" href="addExpense.php"><i class="active-shortcut icon-minus"></i></a>
+           </div>
 
-            <div class=" col-2">
-                <a class="active-shortcut" href="addExpense.html"><i
-                        class="active-shortcut shortcut icon-minus"></i></a>
-            </div>
-
-            <div class=" col-2">
-                <a href="#"><i class="shortcut icon-cog"></i></a>
-            </div>
-        </div>
+           <div class=" col-2">
+               <a href="#" ><i class="shortcut icon-cog"></i></a>
+           </div>
+       </div>
     </header>
 
     <div class="container-fluid">
@@ -57,10 +65,10 @@
 
                     <h1>Dodaj wydatek</h1>
 
-                    <form method="post" id="addIncomeForm" class="mt-3">
-                        <div><input class="add-Income-Form-Input" id="amount" type="number" placeholder="kwota"
+                    <form method="post" id="adIncomeForm" class="mt-3" action="addingExpense.php">
+                        <div><input class="add-Income-Form-Input" id="amount" name="expenseAmount" type="number" placeholder="kwota"
                                 step="0.01" required></div>
-                        <div><input class="add-Income-Form-Input" id="datePicker" type="date" /></div>
+                        <div><input class="add-Income-Form-Input" name="expenseDatePicker" id="datePicker" type="date" /></div>
 
                         <script>
                             document.getElementById('datePicker').valueAsDate = new Date();
@@ -73,90 +81,90 @@
                                 <div class="row d-flex justify-content-center">
 
                                     <div class="col-xl-3 col-md-4 col-sm-6 mt-2 col-6"><label><input class="radio-input"
-                                                type="radio" value="1" name="category" checked="checked"><span
+                                                type="radio" value="1" name="expenseCategory" checked="checked"><span
                                                 class="radio-span">Jedzenie</span></label>
                                     </div>
 
                                     <div class="col-xl-3 col-md-4 col-sm-6 mt-2 col-6"> <label><input
-                                                class="radio-input" type="radio" value="1" name="category"><span
+                                                class="radio-input" type="radio" value="1" name="expenseCategory"><span
                                                 class="radio-span">Mieszkanie</span></label>
                                     </div>
 
                                     <div class="col-xl-3 col-md-4 col-sm-6 mt-2 col-6"><label><input class="radio-input"
-                                                type="radio" value="1" name="category"><span
+                                                type="radio" value="1" name="expenseCategory"><span
                                                 class="radio-span">Transport</span></label>
                                     </div>
 
 
 
                                     <div class="col-xl-3 col-md-4 col-sm-6 mt-2 col-6"> <label><input
-                                                class="radio-input" type="radio" value="1" name="category"><span
+                                                class="radio-input" type="radio" value="1" name="expenseCategory"><span
                                                 class="radio-span">Ubranie</span></label>
                                     </div>
 
                                     <div class="col-xl-3 col-md-4 col-sm-6 mt-2 col-6"><label><input class="radio-input"
-                                                type="radio" value="1" name="category"><span
+                                                type="radio" value="1" name="expenseCategory"><span
                                                 class="radio-span">Darowizna</span></label>
                                     </div>
 
                                     <div class="col-xl-3 col-md-4 col-sm-6 mt-2 col-6"><label><input class="radio-input"
-                                                type="radio" value="1" name="category"><span
+                                                type="radio" value="1" name="expenseCategory"><span
                                                 class="radio-span">Higiena</span></label>
                                     </div>
 
                                     <div class="col-xl-3 col-md-4 col-sm-6 mt-2 col-6"><label><input class="radio-input"
-                                                type="radio" value="1" name="category"><span
+                                                type="radio" value="1" name="expenseCategory"><span
                                                 class="radio-span">Dzieci</span></label>
                                     </div>
 
                                     <div class="col-xl-3 col-md-4 col-sm-6 mt-2 col-6"><label><input class="radio-input"
-                                                type="radio" value="1" name="category"><span
+                                                type="radio" value="1" name="expenseCategory"><span
                                                 class="radio-span">Rozrywka</span></label>
                                     </div>
 
                                     <div class="col-xl-3 col-md-4 col-sm-6 mt-2 col-6"> <label><input
-                                                class="radio-input" type="radio" value="1" name="category"><span
+                                                class="radio-input" type="radio" value="1" name="expenseCategory"><span
                                                 class="radio-span">Wycieczka</span></label>
                                     </div>
 
                                     <div class="col-xl-3 col-md-4 col-sm-6 mt-2 col-6"><label><input class="radio-input"
-                                                type="radio" value="1" name="category"><span
+                                                type="radio" value="1" name="expenseCategory"><span
                                                 class="radio-span">Szkolenia</span></label>
                                     </div>
 
                                     <div class="col-xl-3 col-md-4 col-sm-6 mt-2"><label><input class="radio-input"
-                                                type="radio" value="1" name="category"><span
+                                                type="radio" value="1" name="expenseCategory"><span
                                                 class="radio-span">Książki</span></label>
                                     </div>
 
                                     <div class="col-xl-3 col-md-4 col-sm-6 mt-2"><label><input class="radio-input"
-                                                type="radio" value="1" name="category"><span
+                                                type="radio" value="1" name="expenseCategory"><span
                                                 class="radio-span">Oszczędności</span></label>
                                     </div>
 
                                     <div class="col-xl-3 col-md-4 col-sm-6 mt-2"> <label><input
-                                                class="radio-input" type="radio" value="1" name="category"><span
+                                                class="radio-input" type="radio" value="1" name="expenseCategory"><span
                                                 class="radio-span">Na złotą jesień</span></label>
                                     </div>
 
                                     <div class="col-xl-3 col-md-4 col-sm-6 mt-2"><label><input class="radio-input"
-                                                type="radio" value="1" name="category"><span class="radio-span">Spłata
+                                                type="radio" value="1" name="expenseCategory"><span class="radio-span">Spłata
                                                 długów</span></label>
                                     </div>
 
                                     <div class="col-xl-3 col-md-4 col-sm-6 mt-2"><label><input class="radio-input"
-                                                type="radio" value="1" name="category"><span
+                                                type="radio" value="1" name="expenseCategory"><span
                                                 class="radio-span">Telekomunikacja</span></label>
                                     </div>
                                     
                                     <div class="col-xl-3 col-md-4 col-sm-6 mt-2"><label><input class="radio-input"
-                                                type="radio" value="1" name="category"><span class="radio-span">Opieka
+                                                type="radio" value="1" name="expenseCategory"><span class="radio-span">Opieka
                                                 zdrowotna</span></label>
                                     </div>
 
 
                                     <div class="col-xl-3 col-md-4 col-sm-6 mt-2"><label><input class="radio-input"
-                                                type="radio" value="1" name="category"><span class="radio-span">Inne
+                                                type="radio" value="1" name="expenseCategory"><span class="radio-span">Inne
                                                 wydatki</span></label>
                                     </div>
                                 </div>
@@ -165,21 +173,28 @@
 
                         <div>
                             <div class="mt-4" id="comment_label"><label for="comment">Uwagi</label></div>
-                            <div class="mt-2"><textarea name="moreInfo" id="comment" rows="4"></textarea></div>
+                            <div class="mt-2"><textarea name="expenseMoreInfo" id="comment" rows="4"></textarea></div>
                         </div>
 
                         <div><input class="submit-button" id="addIncome" type="submit" value="Dodaj"></div>
 
 
                         <div class="d-flex justify-content-center" id="cancel">
-                            <a href="menu.html" class="exit-link">
+                            <a href="menu.php" class="exit-link">
                                 <div class="cancel-button">Anuluj</div>
                             </a>
                         </div>
 
 
                     </form>
-
+                    <?php
+                        
+                       
+                        if(isset($_SESSION['success'])) echo '<div class="container d-flex justify-content-center align-items-center succes-msg-animation"><div class="msg align-self-center"> Dodano pomyślnie! </div></div>';
+                        
+                        unset($_SESSION['success']);
+                            
+                    ?>
                 </div>
             </div>
         </div>
