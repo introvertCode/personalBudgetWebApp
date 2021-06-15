@@ -25,6 +25,8 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="fontello-f4b2b225/css/fontello.css" type="text/css">
     <script src="jquery/jquery-3.5.1.min.js"></script>
+    
+    
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8"> 
     <title>Rezultat zapytania</title>
@@ -62,54 +64,73 @@
 </div>
 </header>
 
-<div class="container-fluid mt-5">
-<div class="d-flex">
-    <div class="p-4" id="menu-balance">
+<div class="container-fluid mt-3">
+    <div class="container">
+        <div class="row">
+            <div class="col-md mt-3 d-flex justify-content-center">
+                <div class="p-4" id="menu-balance">
 
-        <form method="post" id="show_balance_form" >
-            <div>
-                <header class="h1">Przeglądaj bilans</header>
-            </div>
-            
-            <div class="input-group my-3 ">
-                <div class="input-group-prepend">
-                  <label class="input-group-text" for="period">Okres</label>
+                    <form method="post" id="show_balance_form" >
+                        <div>
+                            <header class="h1">Przeglądaj bilans</header>
+                        </div>
+                        
+                        <div class="input-group my-3 ">
+                            <div class="input-group-prepend">
+                            <label class="input-group-text" for="period">Okres</label>
+                            </div>
+                            <select class="custom-select" id="period" name="period">
+                                <option selected value=1 class="standard">Bieżący miesiąc</option>
+                                <option value=2 class="standard">Poprzedni miesiąc</option>
+                                <option value=3 class="standard">Bieżący rok</option>
+                                <option value=4 id="not-standard">niestandardowy</option>
+                            </select>
+                        </div>
+
+                        <div id="select-date">
+                            <div><span class="bal-pick-date">Wybierz początkową datę</span></div>
+                            <div><input id="start-date" class="showBalance" type="date" name="startDate"/></div>
+                            <div><span class="bal-pick-date">Wybierz końcową datę</span></div>
+                            <script>
+                                document.getElementById('start-date').valueAsDate = new Date();
+                            </script>
+                            <div><input id="end-date" class="showBalance" type="date" name="endDate"/></div>
+                            <script>
+                                document.getElementById('end-date').valueAsDate = new Date();
+                            </script>
+                        </div>
+                        <div class="d-flex justify-content-center"><input class="mb-3" id="show-bal"
+                                type="submit" value="Pokaż"></div>
+                    </form>
+                    
                 </div>
-                <select class="custom-select" id="period" name="period">
-                    <option selected value=1 class="standard">Bieżący miesiąc</option>
-                    <option value=2 class="standard">Poprzedni miesiąc</option>
-                    <option value=3 class="standard">Bieżący rok</option>
-                    <option value=4 id="not-standard">niestandardowy</option>
-                </select>
-              </div>
-
-            <div id="select-date">
-                <div><span class="bal-pick-date">Wybierz początkową datę</span></div>
-                <div><input id="start-date" class="showBalance" type="date" name="startDate"/></div>
-                <div><span class="bal-pick-date">Wybierz końcową datę</span></div>
-                <script>
-                    document.getElementById('start-date').valueAsDate = new Date();
-                </script>
-                <div><input id="end-date" class="showBalance" type="date" name="endDate"/></div>
-                <script>
-                    document.getElementById('end-date').valueAsDate = new Date();
-                </script>
             </div>
-            <div class="d-flex justify-content-center"><input class="mb-3" id="show-bal"
-                    type="submit" value="Pokaż"></div>
-        </form>
-       
-    </div>
 
-    <div class="p-4 mx-3" id="menu-balance">
-        <header class="h1">BILANS</header>
-        <?php
-            echo $startDate."<br>";
-            echo $endDate, PHP_EOL;
-        ?>
+            <div  class="col-md mt-3 d-flex justify-content-center">
+                <div class="p-4 " id="balance-show">
+                    <header class="h1">BILANS</header>
+                    <hr>
+                    <div class = "row no-gutters">
+                        <div class = "balance-msg col-5">Początek:</div>
+                        <div class = "balance-val col-6"  id= "start"></div>
+                    </div>
+                    <div class = "row no-gutters">
+                        <div class = "balance-msg col-5">Koniec: </div>
+                        <div class = "balance-val col-6" id= "end"> </div>
+                    </div> 
+                    <div class = "row no-gutters">
+                        <div class = "balance-msg col-5"> Stan: </div>
+                        <div class = "balance-val col-6" id= "balance"> </div>
+                    </div>
+                    <div id= "balanceMSG"> </div>
+                    
+
+                </div> 
+            </div>
+        </div>
     </div>
 </div>
-</div>
+
 
 <script src="js/animation.js"></script>
 
@@ -200,7 +221,7 @@
                 //    $query = "SELECT incomes.id, incomes.income_category_assigned_to_user_id, incomes.amount, incomes.date_of_income FROM incomes WHERE user_id = '$loggedUserId' GROUP BY incomes.income_category_assigned_to_user_id;" ;
 
 
-                $expenseQuery = "SELECT expenses.id, expenses.expense_category_assigned_to_user_id, expenses.amount, expenses.date_of_expense, expenses_category_default.name FROM expenses INNER JOIN expenses_category_default ON expenses_category_default.id = expenses.expense_category_assigned_to_user_id  WHERE user_id = '$loggedUserId' AND expenses.date_of_expense >= '$startDate' AND expenses.date_of_expense <= '$endDate'; " ;
+                $expenseQuery = "SELECT expenses.id, expenses.expense_category_assigned_to_user_id, expenses.amount, expenses.date_of_expense, expenses.expense_comment, expenses_category_default.name FROM expenses INNER JOIN expenses_category_default ON expenses_category_default.id = expenses.expense_category_assigned_to_user_id  WHERE user_id = '$loggedUserId' AND expenses.date_of_expense >= '$startDate' AND expenses.date_of_expense <= '$endDate'; " ;
 
                 $expenseCategoryQuery = "SELECT expenses.id, expenses.expense_category_assigned_to_user_id, sum(expenses.amount), expenses.date_of_expense, expenses_category_default.name FROM expenses INNER JOIN expenses_category_default ON expenses_category_default.id = expenses.expense_category_assigned_to_user_id  WHERE user_id = '$loggedUserId' AND expenses.date_of_expense >= '$startDate' AND expenses.date_of_expense <= '$endDate' GROUP BY expenses.expense_category_assigned_to_user_id ; " ;
 
@@ -227,16 +248,18 @@
                 if ($incomeRecords>=1) {
                     
                     echo<<<END
-                    <p>Przychody</p>
                     
-                    <table class="table table-striped table-bordered table-hover table-sm table-responsive-sm">
+                    
+                    <div class="container mt-3"> <h3>Przychody</h3> </div>
+                    <div class ="container table-responsive tab pt-3">
+                    <table class="table table-striped table-hover table-sm">
                    
                     <tr>
-                        <th scope="col">l.p.</th>
-                        <th scope="col">kategoria</th>
-                        <th scope="col">komentarz</th>
-                        <th scope="col">ilość</th>
-                        <th scope="col">data</th>
+                        <th scope="col" id = "t-lp">l.p.</th>
+                        <th scope="col" id = "t-category">kategoria</th>
+                        <th scope="col" id = "t-coment">komentarz</th>
+                        <th scope="col" id = "t-amount">ilość</th>
+                        <th scope="col" id = "t-date">data</th>
                     </tr><tr>
                     END;
 
@@ -263,6 +286,7 @@
                         // $incomesArray[$a2]= $a3;              
                     }
                     
+                    echo "</tr></table></div>";
                         for ($i = 1; $i <= $incomeCategoryRecords; $i++) 
                     {
                         
@@ -287,34 +311,38 @@
                 if ($expenseRecords>=1) {
                   
                     echo<<<END
-                    
-                    <table width="1000" align="center" border="1" bordercolor="#d5d5d5"  cellpadding="0" cellspacing="0">
+                    <div class="container mt-3"> <h3>Wydatki</h3> </div>
+                    <div class ="container table-responsive tab pt-3">
+                    <table class="table table-striped table-hover table-sm table-responsive-sm">
                     <tr>
-                        <td width="20" align="center" bgcolor="e5e5e5">l.p.</td>
-                        <td width="100" align="center" bgcolor="e5e5e5">kategoria</td>
-                        <td width="30" align="center" bgcolor="e5e5e5">ilość</td>
-                        <td width="30" align="center" bgcolor="e5e5e5">data</td>
+                        <th scope="col" id="t-lp">l.p.</th>
+                        <th scope="col" id = "t-category">kategoria</th>
+                        <th scope="col" id = "t-coment" >komentarz</th>
+                        <th scope="col" id = "t-amount">ilość</th>
+                        <th scope="col" id = "t-date">data</th>
                     </tr><tr>
                     END;
 
-                    echo "<p>Wydatki</p>";
+                    
 
                     for ($i = 1; $i <= $expenseRecords; $i++) 
                     {
                         
                         $row = mysqli_fetch_assoc($expenseQueryResult);
-                        // $a1 = $row['id'];
+                        
                         $a2 = $row['name'];
                         $a3 = $row['amount'];
-                        // $a3 = $row['sum(incomes.amount)'];
+                        
                         $a4 = $row['date_of_expense'];
+                        $a5 = $row['expense_comment'];
                             
                         
                         echo<<<END
-                        <td width="20" align="center">$i</td>
-                        <td width="100" align="center">$a2</td>
-                        <td width="30" align="center">$a3</td>
-                        <td width="30" align="center">$a4</td>
+                        <td>$i</td>
+                        <td>$a2</td>
+                        <td>$a5</td>
+                        <td>$a3</td>
+                        <td>$a4</td>
                         </tr><tr>
                         END;
     
@@ -323,7 +351,7 @@
     
                     }
                     
-                    echo "</tr></table>";
+                    echo "</tr></table></div>";
 
                     for ($i = 1; $i <= $expenseCategoryRecords; $i++) 
                     {
@@ -341,7 +369,7 @@
                     }
                 }
                 
-               
+               $balance = $sumOfIncomes - $sumOfExpenses;
                 
                
                 
@@ -376,8 +404,8 @@
             echo '<br/>Informacja developerska:'.$error;
         }
 
-        echo "<p>Suma przychodów: ".$sumOfIncomes."</p>";
-        echo "<p>Suma wydatków: ".$sumOfExpenses."</p>";
+        // echo "<p>Suma przychodów: ".$sumOfIncomes."</p>";
+        // echo "<p>Suma wydatków: ".$sumOfExpenses."</p>";
 
     ?>
 
@@ -393,21 +421,27 @@
         var sumOfIncomes = <?php echo json_encode($sumOfIncomes); ?>;
         var sumOfExpenses = <?php echo json_encode($sumOfExpenses); ?>;
 
+        let startDate = <?php echo json_encode($startDate); ?>;
+        let endDate = <?php echo json_encode($endDate); ?>;
+        let balance = <?php echo json_encode($balance); ?>;
+
     </script>
     
     
     <script src="js/showGraphs.js"></script>
+    <script src="js/showBalance.js"></script>
 
     <?php
         if ($incomeRecords>=1){ 
-            echo '<div id="piechart-incomes"></div>';
+            echo '<div class = "container my-3 pie-place"><div class = "pt-4"> <div id="piechart-incomes"></div></div></div>';
         }
         if ($incomeRecords>=1 || $expenseRecords>=1){ 
-            echo '<div id="piechart-incomes-and-expenses"></div>';
+            echo '<div class = "container my-3 pie-place "><div class = "pt-4"> <div id="piechart-incomes-and-expenses" ></div></div></div>';
         }
         if ($expenseRecords>=1){ 
-            echo '<div id="piechart-expenses"></div>';
+            echo '<div class = "container my-3 pie-place "><div class = "pt-4"> <div id="piechart-expenses"></div></div></div>';
         }
+
     ?>
 
 </body>

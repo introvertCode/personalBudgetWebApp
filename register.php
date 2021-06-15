@@ -208,7 +208,7 @@
 
 
 				</form>
-				<div>Jeśli masz już konto to <a href="login.html">Zaloguj się</a></div>
+				<div>Jeśli masz już konto to <a href="login.php">Zaloguj się</a></div>
 
 			</div>
 

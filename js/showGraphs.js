@@ -1,8 +1,17 @@
 
       google.charts.load('current', {'packages':['corechart']});
+      
+    
       google.charts.setOnLoadCallback(drawChart);
       google.charts.setOnLoadCallback(drawChart1);
       google.charts.setOnLoadCallback(drawChart2);
+ 
+
+      $(window).resize(function(){
+        google.charts.setOnLoadCallback(drawChart);
+        google.charts.setOnLoadCallback(drawChart1);
+        google.charts.setOnLoadCallback(drawChart2);
+        });
       
     
       function drawChart() {
@@ -22,7 +31,10 @@
         }
 
         var options = {
-          title: 'Przychody'
+          title: 'Przychody',
+          backgroundColor: 'transparent',
+          legend: { position: 'top', alignment: 'center' },
+          chartArea: {height: 300}
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('piechart-incomes'));
@@ -48,7 +60,10 @@
             }
 
             var options = {
-            title: 'Wydatki'
+            title: 'Wydatki',
+            backgroundColor: 'transparent',
+            legend: { position: 'top', alignment: 'center' },
+            chartArea: {height: 300}
             };
 
             var chart = new google.visualization.PieChart(document.getElementById('piechart-expenses'));
@@ -68,7 +83,10 @@
           ]);
         //   sumOfIncomes
         var options = {
-          title: 'Przychody i wydatki'
+          title: 'Przychody i wydatki',
+          backgroundColor: 'transparent',
+          legend: { position: 'top', alignment: 'center' },
+          chartArea: {height: 300}
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('piechart-incomes-and-expenses'));
