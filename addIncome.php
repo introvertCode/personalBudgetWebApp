@@ -89,14 +89,14 @@
                         <div class="container d-flex justify-content-center text-start" id="fieldset">
                             <fieldset class="mt-4" id="frame">
                                 <!-- <legend> Rodzaj przychodu:</legend> -->
-                                <div><label><input class="radio-input" type="radio" value="1" name="category"
+                                <div><label><input class="radio-input" type="radio" value="Wynagrodzenie" name="category"
                                             checked="checked"><span class="radio-span">Wynagrodzenie</span></label>
                                 </div>
-                                <div><label><input class="radio-input" type="radio" value="2" name="category"><span
+                                <div><label><input class="radio-input" type="radio" value="Odsetki Bankowe" name="category"><span
                                             class="radio-span">Odsetki bankowe</span></label></div>
-                                <div><label><input class="radio-input" type="radio" value="3" name="category"><span
+                                <div><label><input class="radio-input" type="radio" value="Sprzedaż Allegro" name="category"><span
                                             class="radio-span">Sprzedaż na allegro</span></label></div>
-                                <div><label><input class="radio-input" type="radio" value="4" name="category"><span
+                                <div><label><input class="radio-input" type="radio" value="Inne" name="category"><span
                                             class="radio-span">Inne</span></label></div>
                             </fieldset>
                         </div>

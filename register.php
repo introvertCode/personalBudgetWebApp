@@ -76,9 +76,53 @@
 					if($connection->query("INSERT INTO users VALUES (NULL,'$name','$passwordHash','$email')")) {
 						$_SESSION['registrationOK']= true;
 						header('Location: welcome.php');
+
+						$idQuery = "SELECT id FROM users WHERE email = '$email'";
+						$idQueryResult = mysqli_query($connection, $idQuery);
+						$rowRegisteredUserId = mysqli_fetch_assoc($idQueryResult);
+						$registeredUserId = $rowRegisteredUserId['id'];
+
+
+						$incomeCategoryQuery = "SELECT name FROM incomes_category_default";
+						$incomeCategoryResult = mysqli_query($connection, $incomeCategoryQuery);
+						$incomeCategoryRecords = mysqli_num_rows($incomeCategoryResult);
+						
+						for ($i = 1; $i <= $incomeCategoryRecords; $i++) {
+                
+							$rowIncomeCategory = mysqli_fetch_assoc($incomeCategoryResult);
+							$incomeCategoryName = $rowIncomeCategory['name'];
+							$connection->query("INSERT INTO incomes_category_assigned_to_users VALUES (NULL,'$registeredUserId','$incomeCategoryName')");
+						}
+
+
+						$expenseCategoryQuery = "SELECT name FROM expenses_category_default";
+						$expenseCategoryResult = mysqli_query($connection, $expenseCategoryQuery);
+						$expenseCategoryRecords = mysqli_num_rows($expenseCategoryResult);
+						
+						for ($i = 1; $i <= $expenseCategoryRecords; $i++) {
+                
+							$rowExpenseCategory = mysqli_fetch_assoc($expenseCategoryResult);
+							$expenseCategoryName = $rowExpenseCategory['name'];
+							$connection->query("INSERT INTO expenses_category_assigned_to_users VALUES (NULL,'$registeredUserId','$expenseCategoryName')");
+						}
+
+
+						$paymentMethodQuery = "SELECT name FROM payment_method_default";
+						$paymentMethodResult = mysqli_query($connection, $paymentMethodQuery);
+						$paymentMethodRecords = mysqli_num_rows($paymentMethodResult);
+						
+						for ($i = 1; $i <= $paymentMethodRecords; $i++) {
+                
+							$rowPaymentMethod = mysqli_fetch_assoc($paymentMethodResult);
+							$paymentMethodName = $rowPaymentMethod['name'];
+							$connection->query("INSERT INTO payment_methods_assigned_to_users VALUES (NULL,'$registeredUserId','$paymentMethodName')");
+						}
+
+
+
 					} else{
 					   throw new Exception($connection->error);
-					}
+					} 
 				}
 	
 				

@@ -214,16 +214,22 @@
                     $loggedUserId = $_SESSION['id'];
                 //$query = "SELECT expenses.id, expenses.expense_category_assigned_to_user_id, expenses.amount, expenses.date_of_expense FROM expenses WHERE expenses.user_id = '$loggedUserId' ";
 
-                $incomeQuery = "SELECT incomes.id, incomes.income_category_assigned_to_user_id, incomes.amount, incomes.date_of_income, incomes.income_comment, incomes_category_default.name FROM incomes INNER JOIN incomes_category_default ON incomes_category_default.id = incomes.income_category_assigned_to_user_id  WHERE incomes.user_id = '$loggedUserId' AND incomes.date_of_income >= '$startDate'AND incomes.date_of_income <= '$endDate'; " ;
+                $incomeQuery = "SELECT incomes.id, incomes.income_category_assigned_to_user_id, incomes.amount, incomes.date_of_income, incomes.income_comment, incomes_category_assigned_to_users.name FROM incomes INNER JOIN incomes_category_assigned_to_users ON incomes_category_assigned_to_users.id = incomes.income_category_assigned_to_user_id  WHERE incomes.user_id = '$loggedUserId' AND incomes.date_of_income >= '$startDate'AND incomes.date_of_income <= '$endDate'; " ;
 
-                $incomeCategoryQuery = "SELECT incomes.id, incomes.income_category_assigned_to_user_id, sum(incomes.amount), incomes.date_of_income, incomes_category_default.name FROM incomes INNER JOIN incomes_category_default ON incomes_category_default.id = incomes.income_category_assigned_to_user_id  WHERE incomes.user_id = '$loggedUserId' AND incomes.date_of_income >= '$startDate'AND incomes.date_of_income <= '$endDate' GROUP BY incomes.income_category_assigned_to_user_id ;" ;
+                $incomeCategoryQuery = "SELECT incomes.id, incomes.income_category_assigned_to_user_id, sum(incomes.amount), incomes.date_of_income, incomes_category_assigned_to_users.name FROM incomes INNER JOIN incomes_category_assigned_to_users ON incomes_category_assigned_to_users.id = incomes.income_category_assigned_to_user_id  WHERE incomes.user_id = '$loggedUserId' AND incomes.date_of_income >= '$startDate'AND incomes.date_of_income <= '$endDate' GROUP BY incomes.income_category_assigned_to_user_id ;" ;
 
                 //    $query = "SELECT incomes.id, incomes.income_category_assigned_to_user_id, incomes.amount, incomes.date_of_income FROM incomes WHERE user_id = '$loggedUserId' GROUP BY incomes.income_category_assigned_to_user_id;" ;
 
 
-                $expenseQuery = "SELECT expenses.id, expenses.expense_category_assigned_to_user_id, expenses.amount, expenses.date_of_expense, expenses.expense_comment, expenses_category_default.name FROM expenses INNER JOIN expenses_category_default ON expenses_category_default.id = expenses.expense_category_assigned_to_user_id  WHERE user_id = '$loggedUserId' AND expenses.date_of_expense >= '$startDate' AND expenses.date_of_expense <= '$endDate'; " ;
+                $expenseQuery = "SELECT expenses.id, expenses.expense_category_assigned_to_user_id, expenses.amount, expenses.date_of_expense, expenses.expense_comment, expenses_category_assigned_to_users.name FROM expenses INNER JOIN expenses_category_assigned_to_users ON expenses_category_assigned_to_users.id = expenses.expense_category_assigned_to_user_id  WHERE expenses.user_id = '$loggedUserId' AND expenses.date_of_expense >= '$startDate' AND expenses.date_of_expense <= '$endDate'; " ;
 
-                $expenseCategoryQuery = "SELECT expenses.id, expenses.expense_category_assigned_to_user_id, sum(expenses.amount), expenses.date_of_expense, expenses_category_default.name FROM expenses INNER JOIN expenses_category_default ON expenses_category_default.id = expenses.expense_category_assigned_to_user_id  WHERE user_id = '$loggedUserId' AND expenses.date_of_expense >= '$startDate' AND expenses.date_of_expense <= '$endDate' GROUP BY expenses.expense_category_assigned_to_user_id ; " ;
+                $expenseCategoryQuery = "SELECT expenses.id, expenses.expense_category_assigned_to_user_id, sum(expenses.amount), expenses.date_of_expense, expenses_category_assigned_to_users.name FROM expenses INNER JOIN expenses_category_assigned_to_users ON expenses_category_assigned_to_users.id = expenses.expense_category_assigned_to_user_id  WHERE expenses.user_id = '$loggedUserId' AND expenses.date_of_expense >= '$startDate' AND expenses.date_of_expense <= '$endDate' GROUP BY expenses.expense_category_assigned_to_user_id;";
+
+                // $expenseQuery = "SELECT expenses.id, expenses.expense_category_assigned_to_user_id, expenses.amount, expenses.date_of_expense, expenses.expense_comment, expenses_category_default.name FROM expenses INNER JOIN expenses_category_default ON expenses_category_default.id = expenses.expense_category_assigned_to_user_id  WHERE user_id = '$loggedUserId' AND expenses.date_of_expense >= '$startDate' AND expenses.date_of_expense <= '$endDate'; " ;
+
+                // $expenseCategoryQuery = "SELECT expenses.id, expenses.expense_category_assigned_to_user_id, sum(expenses.amount), expenses.date_of_expense, expenses_category_default.name FROM expenses INNER JOIN expenses_category_default ON expenses_category_default.id = expenses.expense_category_assigned_to_user_id  WHERE user_id = '$loggedUserId' AND expenses.date_of_expense >= '$startDate' AND expenses.date_of_expense <= '$endDate' GROUP BY expenses.expense_category_assigned_to_user_id ; " ;
+
+                // $expenseCategoryQuery = "SELECT * FROM expenses_category_assigned_to_users";
 
                 
 
@@ -266,23 +272,23 @@
                     for ($i = 1; $i <= $incomeRecords; $i++) {
                 
                         $row = mysqli_fetch_assoc($incomeQueryResult);
-                        $a2 = $row['name'];
-                        $a3 = $row['amount'];
-                        $a4 = $row['date_of_income'];
-                        $a5 = $row['income_comment'];
+                        $incomeName = $row['name'];
+                        $incomeAmount = $row['amount'];
+                        $incomeDate = $row['date_of_income'];
+                        $incomeComment = $row['income_comment'];
                             
                         
                         echo<<<END
                         <td >$i</td>
-                        <td >$a2</td>
-                        <td >$a5</td>
-                        <td >$a3</td>
-                        <td >$a4</td>
+                        <td >$incomeName</td>
+                        <td >$incomeComment</td>
+                        <td >$incomeAmount</td>
+                        <td >$incomeDate</td>
                         
                         </tr><tr>
                         END;
                         
-                        $sumOfIncomes += $a3;
+                        $sumOfIncomes += $incomeAmount;
                         // $incomesArray[$a2]= $a3;              
                     }
                     
@@ -292,14 +298,14 @@
                         
                         $row = mysqli_fetch_assoc($incomeCategoryQueryResult);
                         
-                        $a2 = $row['name'];
+                        $incomeCategoryName = $row['name'];
                         
-                        $a3 = $row['sum(incomes.amount)'];
+                        $incomeCategoryAmountSum = $row['sum(incomes.amount)'];
                         
                             
-                        $incomesAmountArray[]= $a3;
-                        $incomesCategoryArray[]= $a2;
-                        $incomesArray [$a2] = $a3;
+                        $incomesAmountArray[]= $incomeCategoryAmountSum;
+                        $incomesCategoryArray[]= $incomeCategoryName;
+                        // $incomesArray [$a2] = $a3;
 
                     }
 
@@ -330,23 +336,23 @@
                         
                         $row = mysqli_fetch_assoc($expenseQueryResult);
                         
-                        $a2 = $row['name'];
-                        $a3 = $row['amount'];
+                        $expenseName = $row['name'];
+                        $expenseComment = $row['expense_comment'];
+                        $expenseAmount = $row['amount'];
+                        $expenseDate = $row['date_of_expense'];
                         
-                        $a4 = $row['date_of_expense'];
-                        $a5 = $row['expense_comment'];
                             
                         
                         echo<<<END
                         <td>$i</td>
-                        <td>$a2</td>
-                        <td>$a5</td>
-                        <td>$a3</td>
-                        <td>$a4</td>
+                        <td>$expenseName</td>
+                        <td>$expenseComment</td>
+                        <td>$expenseAmount</td>
+                        <td>$expenseDate</td>
                         </tr><tr>
                         END;
     
-                        $sumOfExpenses += $a3;
+                        $sumOfExpenses += $expenseAmount;
                         // $expensesArray[$a2]= $a3;
     
                     }
@@ -358,14 +364,14 @@
                         
                         $row = mysqli_fetch_assoc($expenseCategoryQueryResult);
                         
-                        $a2 = $row['name'];
+                        $expenseCategoryName = $row['name'];
                         
-                        $a3 = $row['sum(expenses.amount)'];
+                        $expenseCategoryAmountSum = $row['sum(expenses.amount)'];
                         
                             
-                        $expensesAmountArray[]= $a3;
-                        $expensesCategoryArray[]= $a2;
-                        $expensesArray [$a2] = $a3;
+                        $expensesAmountArray[]= $expenseCategoryAmountSum;
+                        $expensesCategoryArray[]= $expenseCategoryName;
+                        // $expensesArray [$a2] = $a3;
                     }
                 }
                 
@@ -385,19 +391,16 @@
                     $incomesCategoryArray[] = NULL;
                 }
 
-                
-               
 
                 // var_dump($incomesAmountArray);
 
                 // var_dump($expensesCategoryArray);
-                
-                
-
 
                 //header('Location: addIncome.php');
                 //$_SESSION['success'] ='<div class="popupMsg"> Dodano pomyślnie! </div>';
             }
+            
+            $connection->close();
 
         }catch(Exception $error){
             echo '<span>Błąd serwera!</span>';
