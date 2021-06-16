@@ -81,90 +81,88 @@
                                 <div class="row d-flex justify-content-center">
 
                                     <div class="col-xl-3 col-md-4 col-sm-6 mt-2 col-6"><label><input class="radio-input"
-                                                type="radio" value="1" name="expenseCategory" checked="checked"><span
+                                                type="radio" value="Jedzenie" name="expenseCategory" checked="checked"><span
                                                 class="radio-span">Jedzenie</span></label>
                                     </div>
 
                                     <div class="col-xl-3 col-md-4 col-sm-6 mt-2 col-6"> <label><input
-                                                class="radio-input" type="radio" value="1" name="expenseCategory"><span
+                                                class="radio-input" type="radio" value="Mieszkanie" name="expenseCategory"><span
                                                 class="radio-span">Mieszkanie</span></label>
                                     </div>
 
                                     <div class="col-xl-3 col-md-4 col-sm-6 mt-2 col-6"><label><input class="radio-input"
-                                                type="radio" value="1" name="expenseCategory"><span
+                                                type="radio" value="Transport" name="expenseCategory"><span
                                                 class="radio-span">Transport</span></label>
                                     </div>
 
-
-
                                     <div class="col-xl-3 col-md-4 col-sm-6 mt-2 col-6"> <label><input
-                                                class="radio-input" type="radio" value="1" name="expenseCategory"><span
+                                                class="radio-input" type="radio" value="Ubranie" name="expenseCategory"><span
                                                 class="radio-span">Ubranie</span></label>
                                     </div>
 
                                     <div class="col-xl-3 col-md-4 col-sm-6 mt-2 col-6"><label><input class="radio-input"
-                                                type="radio" value="1" name="expenseCategory"><span
+                                                type="radio" value="Darowizna" name="expenseCategory"><span
                                                 class="radio-span">Darowizna</span></label>
                                     </div>
 
                                     <div class="col-xl-3 col-md-4 col-sm-6 mt-2 col-6"><label><input class="radio-input"
-                                                type="radio" value="1" name="expenseCategory"><span
+                                                type="radio" value="Higiena" name="expenseCategory"><span
                                                 class="radio-span">Higiena</span></label>
                                     </div>
 
                                     <div class="col-xl-3 col-md-4 col-sm-6 mt-2 col-6"><label><input class="radio-input"
-                                                type="radio" value="1" name="expenseCategory"><span
+                                                type="radio" value="Dzieci" name="expenseCategory"><span
                                                 class="radio-span">Dzieci</span></label>
                                     </div>
 
                                     <div class="col-xl-3 col-md-4 col-sm-6 mt-2 col-6"><label><input class="radio-input"
-                                                type="radio" value="1" name="expenseCategory"><span
+                                                type="radio" value="Rozrywka" name="expenseCategory"><span
                                                 class="radio-span">Rozrywka</span></label>
                                     </div>
 
                                     <div class="col-xl-3 col-md-4 col-sm-6 mt-2 col-6"> <label><input
-                                                class="radio-input" type="radio" value="1" name="expenseCategory"><span
+                                                class="radio-input" type="radio" value="Wycieczka" name="expenseCategory"><span
                                                 class="radio-span">Wycieczka</span></label>
                                     </div>
 
                                     <div class="col-xl-3 col-md-4 col-sm-6 mt-2 col-6"><label><input class="radio-input"
-                                                type="radio" value="1" name="expenseCategory"><span
+                                                type="radio" value="Szkolenia" name="expenseCategory"><span
                                                 class="radio-span">Szkolenia</span></label>
                                     </div>
 
                                     <div class="col-xl-3 col-md-4 col-sm-6 mt-2"><label><input class="radio-input"
-                                                type="radio" value="1" name="expenseCategory"><span
+                                                type="radio" value="Książki" name="expenseCategory"><span
                                                 class="radio-span">Książki</span></label>
                                     </div>
 
                                     <div class="col-xl-3 col-md-4 col-sm-6 mt-2"><label><input class="radio-input"
-                                                type="radio" value="1" name="expenseCategory"><span
+                                                type="radio" value="Oszczędności" name="expenseCategory"><span
                                                 class="radio-span">Oszczędności</span></label>
                                     </div>
 
                                     <div class="col-xl-3 col-md-4 col-sm-6 mt-2"> <label><input
-                                                class="radio-input" type="radio" value="1" name="expenseCategory"><span
+                                                class="radio-input" type="radio" value="Na złotą jesień" name="expenseCategory"><span
                                                 class="radio-span">Na złotą jesień</span></label>
                                     </div>
 
                                     <div class="col-xl-3 col-md-4 col-sm-6 mt-2"><label><input class="radio-input"
-                                                type="radio" value="1" name="expenseCategory"><span class="radio-span">Spłata
+                                                type="radio" value="Spłata długów" name="expenseCategory"><span class="radio-span">Spłata
                                                 długów</span></label>
                                     </div>
 
                                     <div class="col-xl-3 col-md-4 col-sm-6 mt-2"><label><input class="radio-input"
-                                                type="radio" value="1" name="expenseCategory"><span
+                                                type="radio" value="Telekomunikacja" name="expenseCategory"><span
                                                 class="radio-span">Telekomunikacja</span></label>
                                     </div>
                                     
                                     <div class="col-xl-3 col-md-4 col-sm-6 mt-2"><label><input class="radio-input"
-                                                type="radio" value="1" name="expenseCategory"><span class="radio-span">Opieka
+                                                type="radio" value="Opieka zdrowotna" name="expenseCategory"><span class="radio-span">Opieka
                                                 zdrowotna</span></label>
                                     </div>
 
 
                                     <div class="col-xl-3 col-md-4 col-sm-6 mt-2"><label><input class="radio-input"
-                                                type="radio" value="1" name="expenseCategory"><span class="radio-span">Inne
+                                                type="radio" value="Inne wydatki" name="expenseCategory"><span class="radio-span">Inne
                                                 wydatki</span></label>
                                     </div>
                                 </div>

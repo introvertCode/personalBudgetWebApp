@@ -17,6 +17,7 @@ if(isset($_POST['datePicker'])){
     $date = $_POST['datePicker'];
 
     $comment = $_POST['moreInfo'];
+
     
     
 
@@ -33,11 +34,19 @@ if(isset($_POST['datePicker'])){
                 throw new Exception(mysqli_connect_errno());
             }else{
                 $loggedUserId = $_SESSION['id'];
-                $connection -> query("INSERT INTO incomes VALUES (NULL,'$loggedUserId', '$category','$amount','$date','$comment')");
-                header('Location: addIncome.php');
-                $_SESSION['success'] ='<div class="popupMsg"> Dodano pomyślnie! </div>';
-            }
 
+                $incomeCategoryQuery = "SELECT id FROM incomes_category_assigned_to_users WHERE user_id = '$loggedUserId' AND name = '$category' ;" ;
+                $incomeCategoryResult = mysqli_query($connection, $incomeCategoryQuery);
+                $rowIncomeCategory = mysqli_fetch_assoc($incomeCategoryResult);
+				$incomeCategoryId = $rowIncomeCategory['id'];
+
+                $connection -> query("INSERT INTO incomes VALUES (NULL,'$loggedUserId', '$incomeCategoryId','$amount','$date','$comment')");
+                
+                $_SESSION['success'] ='<div class="popupMsg"> Dodano pomyślnie! </div>';
+                header('Location: addIncome.php');
+            }
+            
+            $connection->close();
         }catch(Exception $error){
             echo '<span>Błąd serwera!</span>';
         echo '<br/>Informacja developerska:'.$error;
